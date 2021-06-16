@@ -34384,25 +34384,6 @@ var randomString = function (length, chars) {
 	return result;
 };
 
-// var download = async function (uri, filename) {
-// 	await new Promise((resolve, reject) => {
-// 		request.head(uri, async function (err, res, body) {
-// 			// console.log("content-type:", res.headers["content-type"]);
-// 			// console.log("content-length:", res.headers["content-length"]);
-
-// 			request(uri)
-// 				.pipe(fs.createWriteStream("upload/" + filename))
-// 				.on("close", async () => {
-// 					console.log(`The file is finished downloading.`);
-// 					resolve();
-// 				})
-// 				.on("error", (error) => {
-// 					reject(error);
-// 				});
-// 		});
-// 	});
-// };
-
 let i = 0;
 let error_arr = [];
 var download = async function (url, filename) {
@@ -34418,12 +34399,8 @@ var download = async function (url, filename) {
 			const response = axios(request);
 			let output;
 
-			// if (url.endsWith(".zip")) {
-			// 	output = unzip.Extract({ path: out });
-			// } else {
 			const file = path.resolve("upload/", filename);
 			output = fs.createWriteStream(file);
-			// }
 
 			response
 				.then(function (response) {
@@ -34450,7 +34427,7 @@ var download = async function (url, filename) {
 								data[
 									i
 								].imageUrl = `https://dydza6t6xitx6.cloudfront.net/${image_name}`;
-							} //  ..  setTimeout()
+							}
 						})
 						.on("error", reject);
 				})
@@ -34484,32 +34461,6 @@ var download = async function (url, filename) {
 		}
 	});
 };
-
-// const mapLoop = async (_) => {
-// 	// const promises = data.map(async (row, index) => {
-// 	setTimeout(async function () {
-// 		//  call a 2s setTimeout when the loop is called
-// 		i++; //  increment the counter
-// 		if (i < data.length) {
-// 			//  if the counter < 10, call the loop function
-// 			mapLoop(); //  ..  again which will trigger another
-
-// 			const image_name = `${data[i].itemName
-// 				.replace(/[^a-zA-Z0-9]/g, " ")
-// 				.toLowerCase()
-// 				.replace(/ /g, "-")}-${randomString(
-// 				12,
-// 				"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-// 			)}.${data[i].imageUrl.substr(data[i].imageUrl.lastIndexOf(".") + 1)}`;
-
-// 			await download(data[i].imageUrl, image_name);
-
-// 			//update the data array object
-// 			data[i].imageUrl = `https://dydza6t6xitx6.cloudfront.net/${image_name}`;
-// 		} //  ..  setTimeout()
-
-// 	}, 2000);
-// };
 
 const image_name = `${data[i].itemName
 	.replace(/[^a-zA-Z0-9]/g, " ")
